@@ -1,0 +1,51 @@
+<main class="task-manager">
+    <mat-card class="header">
+        <mat-card-content class="header-content">
+            <h1 class="heading">User Manager App</h1>
+            <div class="action">
+                <button mat-raised-button color="accent" (click)="editRow('ADD')">Add</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <div class="table-container" *ngIf="tableData.length">
+        <table mat-table [dataSource]="tableData">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef="id">User ID</th>
+                <td mat-cell *matCellDef="let element">{{element.id}}</td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef="name">Name</th>
+                <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef="email">Email</th>
+                <td mat-cell *matCellDef="let element">{{element.email}}</td>
+            </ng-container>
+            <ng-container matColumnDef="number">
+                <th mat-header-cell *matHeaderCellDef="number">Contact No.</th>
+                <td mat-cell *matCellDef="let element">{{element.number}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef="action"> action</th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon svgIcon="edit" (click)="editRow('EDIT' , element)"></mat-icon>
+                    <mat-icon svgIcon="archive" (click)="deleteRow(element)"></mat-icon>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+
+    <div class="table-container empty-state" *ngIf="!tableData.length">
+            <mat-card class="card">
+                <mat-card-title>
+                    No User Added Yet!
+                </mat-card-title>
+                <mat-card-actions class="action">
+                    <button mat-raised-button color="accent" (click)="editRow('ADD')">Add</button>
+                </mat-card-actions>
+            </mat-card>
+    </div>
+</main>

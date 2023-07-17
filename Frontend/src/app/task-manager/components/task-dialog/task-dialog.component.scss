@@ -1,0 +1,9 @@
+.task-dialog {
+    padding: 1rem;
+    width: max-content;
+
+    .form {
+        display: flex;
+        flex-direction: column;
+    }
+}
